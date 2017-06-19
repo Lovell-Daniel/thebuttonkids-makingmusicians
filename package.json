@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
-    "deploy": "webpack -p"
+    "build": "webpack -p",
+    "deploy": "surge /Users/daniel/dev/thebuttonkids-makingmusicians/dist thebuttonkids.com"
   },
   "babel": {
     "presets": [
