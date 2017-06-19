@@ -8,6 +8,7 @@ import Contact from './Contact';
 import {fetchProducts, fetchCart, fetchCollections, fetchCategories} from '../utils/api';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
+import UnderDevelopment from './UnderDevelopment.js'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export default class App extends React.Component {
     return (
       <Router>
         <div>
+          <UnderDevelopment></UnderDevelopment>
           <Navbar collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
