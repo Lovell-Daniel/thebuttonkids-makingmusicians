@@ -54,7 +54,7 @@ export default class App extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <LinkContainer to="/buttons">
+                <LinkContainer to="/">
                   <NavItem eventKey={1}>Buttons</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/faq">
@@ -75,7 +75,7 @@ export default class App extends React.Component {
             </Navbar.Collapse>
           </Navbar>
           <Switch>
-            <Route exact path="/buttons" render={(props) =>
+            <Route exact path="/" render={(props) =>
               <Buttons
                 products={this.state.products}
                 categories={this.state.categories}
@@ -91,7 +91,7 @@ export default class App extends React.Component {
             <Route exact path="/faq" component={FAQ}/>
             <Route exact path="/subscribe" component={Subscribe}/>
             <Route exact path="/contact" component={Contact}/>
-            <Redirect from="/" to="/buttons"/>
+            <Redirect from="/buttons" to="/"/>
           </Switch>
         </div>
       </Router>
