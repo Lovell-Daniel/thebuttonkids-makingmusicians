@@ -1,9 +1,7 @@
-import { gateway as MoltinGateway } from '@moltin/sdk';
+import {gateway as MoltinGateway} from '@moltin/sdk';
 import settings from "../settings.json";
 
-const Moltin = MoltinGateway({
-  client_id: settings.moltin.client_id
-});
+const Moltin = MoltinGateway({client_id: settings.moltin.client_id});
 
 export function fetchProducts() {
   return Moltin.Products.All()

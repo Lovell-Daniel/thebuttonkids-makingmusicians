@@ -1,5 +1,7 @@
+// dependecies
 import React from "react";
 import {Grid, PageHeader} from "react-bootstrap"
+// utils
 import {deleteCart} from "../utils/api.js"
 
 export default class Cart extends React.Component {

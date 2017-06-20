@@ -1,15 +1,23 @@
-import React from 'react';
-import {BrowserRouter as Router, NavLink, Route, Switch, Redirect} from 'react-router-dom';
-import Buttons from './Buttons';
-import Cart from './Cart';
-import FAQ from './FAQ';
-import Subscribe from './Subscribe';
-import Contact from './Contact';
+// dependencies
+import React from 'react'
+import {BrowserRouter as Router, NavLink, Route, Switch, Redirect} from 'react-router-dom'
+import {Navbar, Nav, NavItem} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
+// components
+import Buttons from './Buttons'
+import Cart from './Cart'
+import FAQ from './FAQ'
+import Subscribe from './Subscribe'
+import Contact from './Contact'
 import BadgeCartTotal from './BadgeCartTotal.js'
-import {fetchProducts, fetchCart, fetchCollections, fetchCategories} from '../utils/api';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
 import UnderDevelopment from './UnderDevelopment.js'
+// utils
+import {
+  fetchProducts,
+  fetchCart,
+  fetchCollections,
+  fetchCategories
+} from '../utils/api'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,45 +26,46 @@ export default class App extends React.Component {
       products: [],
       categories: [],
       collections: [],
-      cart: null,
+      cart: null
     };
-    this.handleUpdatedCartTrue = this.handleUpdatedCartTrue.bind(this)
+    this.getUpdatedCart = this.getUpdatedCart.bind(this)
+  }
+
+  // update state with current cart
+  // called by componentDidMount() and after every change to cart
+  getUpdatedCart() {
+    fetchCart().then((cart) => {
+      this.setState(() => {
+        return {cart: cart}
+      })
+    })
   }
 
   componentDidMount() {
+    // update state with lists of products, categories, and collections from API
+    // products sometimes needs categories and collections, so loaded together
     Promise.all([fetchProducts(), fetchCategories(), fetchCollections()])
-      .then(results => {
-        this.setState(() => {
-          return {
-            products: results[0].data,
-            categories: results[1].data,
-            collections: results[2].data
-          }
-        })
-      })
-
-    fetchCart().then((cart) => {
+    .then(results => {
       this.setState(() => {
-        return {cart: cart}
+        return {
+          products: results[0].data,
+          categories: results[1].data,
+          collections: results[2].data}
       })
     })
-  }
 
-  handleUpdatedCartTrue() {
-    fetchCart().then((cart) => {
-      this.setState(() => {
-        console.log("setstate")
-        console.log(cart);
-        return {cart: cart}
-      })
-    })
+    // update state with the initial cart
+    this.getUpdatedCart()
   }
 
   render() {
     return (
       <Router>
         <div>
+          {/* announce that the site is under development */}
           <UnderDevelopment></UnderDevelopment>
+
+          {/* nav menu using react-router v4, react-bootstrap, and react-router-bootstrap */}
           <Navbar collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
@@ -81,29 +90,33 @@ export default class App extends React.Component {
               </Nav>
               <Nav pullRight>
                 <LinkContainer to="/cart">
-                  <NavItem eventKey={5}>Cart{" "}<BadgeCartTotal cart={this.state.cart}/></NavItem>
+                  <NavItem eventKey={5}>Cart{" "}
+                    <BadgeCartTotal cart={this.state.cart}/>
+                  </NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
+
+          {/* define routes and related components */}
           <Switch>
             <Route exact path="/buttons" render={(props) =>
               <Buttons
+                // state
                 products={this.state.products}
                 categories={this.state.categories}
                 collections={this.state.collections}
                 cart={this.state.cart}
-                handleUpdatedCartTrue={this.handleUpdatedCartTrue}
-              />
-            }/>
-            <Route exact path="/cart" component={(props) =>
-              <Cart
-                cart={this.state.cart}
-              />
-            }/>
+                // state handler
+                getUpdatedCart={this.getUpdatedCart}
+              />}
+            />
             <Route exact path="/faq" component={FAQ}/>
             <Route exact path="/subscribe" component={Subscribe}/>
             <Route exact path="/contact" component={Contact}/>
+            <Route exact path="/cart" component={(props) =>
+              <Cart cart={this.state.cart}/>}
+            />
             <Redirect from="/" to="/buttons"/>
           </Switch>
         </div>

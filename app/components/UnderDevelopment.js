@@ -1,7 +1,9 @@
+// dependencies
 import React from 'react'
 import {Modal, Button} from 'react-bootstrap'
 
 export default class UnderDevelopment extends React.Component {
+// alerts that the page isn't ready for orders
   constructor(props) {
     super(props)
     this.state = {
@@ -12,9 +14,7 @@ export default class UnderDevelopment extends React.Component {
 
   close() {
     this.setState(() => {
-      return {
-        showModal: false
-      }
+      return {showModal: false}
     })
   }
 

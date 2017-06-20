@@ -1,9 +1,20 @@
+// dependencies
 import React from "react";
-import Item from "./Item";
-import { Row } from "react-bootstrap"
-import {getRelationshipId, getRelationshipName, satisfiesSize, satisfiesCategory, satisfiesCustomizable} from "../utils/filter.js"
+import {Row} from "react-bootstrap"
+// components
+import Product from "./Product";
+// utils
+import {
+  getRelationshipId,
+  getRelationshipName,
+  satisfiesSize,
+  satisfiesCategory,
+  satisfiesCustomizable
+} from "../utils/filter.js"
 
 export default class ButtonsFiltered extends React.Component {
+// filters and contains the products that need to be displayed
+// checks against the three filter options
   render() {
     return (
       <Row>
@@ -12,15 +23,16 @@ export default class ButtonsFiltered extends React.Component {
             return (
               satisfiesCategory(
                 this.props.selectedCategory,
-                getRelationshipName(product.relationships.categories.data[0].id, this.props.categories)
-              )
-              && satisfiesSize(
+                getRelationshipName(
+                  product.relationships.categories.data[0].id,
+                  this.props.categories
+                )
+              ) && satisfiesSize(
                 this.props.selectedSize,
                 getRelationshipId("Big Buttons", this.props.collections),
                 getRelationshipId("Small Buttons", this.props.collections),
                 product
-              )
-              && satisfiesCustomizable(
+              ) && satisfiesCustomizable(
                 this.props.selectedCustomizable,
                 getRelationshipId("Customizable Buttons", this.props.collections),
                 product
@@ -29,8 +41,14 @@ export default class ButtonsFiltered extends React.Component {
           })
           .map((product) => {
             return (
-              <Item key={product.id} product={product} handleUpdatedCartTrue={this.props.handleUpdatedCartTrue} />
-            )
+              <Product
+                // attributes
+                key={product.id}
+                // props
+                product={product}
+                // props handlers
+                getUpdatedCart={this.props.getUpdatedCart}
+              />)
           })
         }
       </Row>

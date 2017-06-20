@@ -1,3 +1,6 @@
+// !!!!!!!!!! THIS PAGE DOESN'T WORK YET !!!!!!!!!!!!
+
+// dependencies
 import React from "react";
 import {Grid} from "react-bootstrap";
 

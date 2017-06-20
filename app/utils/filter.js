@@ -1,6 +1,8 @@
 export function satisfiesCategory(selection, categoryName) {
-  if (selection === "All Categories") return true
-  if (selection === categoryName) return true
+  if (selection === "All Categories")
+    return true
+  if (selection === categoryName)
+    return true
   return false
 }
 
@@ -13,9 +15,12 @@ export function satisfiesSize(selection, bigButtonId, smallButtonId, product) {
     return collection.id === smallButtonId;
   })
 
-  if (selection === "All") return true
-  if (selection === "Big Buttons" && hasBigButtonCollection) return true
-  if (selection === "Small Buttons" && hasSmallButtonCollection) return true
+  if (selection === "All")
+    return true
+  if (selection === "Big Buttons" && hasBigButtonCollection)
+    return true
+  if (selection === "Small Buttons" && hasSmallButtonCollection)
+    return true
   return false
 }
 
@@ -23,9 +28,12 @@ export function satisfiesCustomizable(selection, customizableId, product) {
   const hasCustomizableCollection = product.relationships.collections.data.find((collection) => {
     return collection.id === customizableId;
   })
-  if (selection === "All") return true
-  if (selection === "Customizable" && hasCustomizableCollection) return true
-  if (selection === "Not Customizable" && !hasCustomizableCollection) return true
+  if (selection === "All")
+    return true
+  if (selection === "Customizable" && hasCustomizableCollection)
+    return true
+  if (selection === "Not Customizable" && !hasCustomizableCollection)
+    return true
   return false
 }
 

@@ -1,39 +1,37 @@
+// dependencies
 import React from "react";
+import {PageHeader, Grid, Clearfix} from "react-bootstrap";
+// components
 import ButtonsFilter from "./ButtonsFilter";
 import ButtonsFiltered from "./ButtonsFiltered";
+// utils
 import {fetchCategories} from '../utils/api';
-import {PageHeader, Grid, Clearfix} from "react-bootstrap";
 
 export default class Buttons extends React.Component {
-  constructor (props) {
+// container for the filtering section and the section for displaying products
+// the common parent that has the state for the filtering selections
+  constructor(props) {
     super(props);
     this.state = {
       selectedCategory: "All Categories",
       selectedCustomizable: "All",
       selectedSize: "All"
     }
-
     this.handleCustomizableButtonsInput = this.handleCustomizableButtonsInput.bind(this)
     this.handleSizeButtonsInput = this.handleSizeButtonsInput.bind(this)
     this.handleCategorySelectInput = this.handleCategorySelectInput.bind(this)
   }
 
   handleCustomizableButtonsInput(selectedCustomizable) {
-    this.setState({
-      selectedCustomizable: selectedCustomizable
-    })
+    this.setState({selectedCustomizable: selectedCustomizable})
   }
 
   handleSizeButtonsInput(selectedSize) {
-    this.setState({
-      selectedSize: selectedSize
-    })
+    this.setState({selectedSize: selectedSize})
   }
 
   handleCategorySelectInput(selectedCategory) {
-    this.setState({
-      selectedCategory: selectedCategory
-    })
+    this.setState({selectedCategory: selectedCategory})
   }
 
   render() {
@@ -41,23 +39,29 @@ export default class Buttons extends React.Component {
       <div>
         <Grid>
           <ButtonsFilter
+            // props
             categories={this.props.categories}
+            // state
             selectedCategory={this.state.selectedCategory}
             selectedCustomizable={this.state.selectedCustomizable}
             selectedSize={this.state.selectedSize}
+            // state handlers
             handleCustomizableButtonsInput={this.handleCustomizableButtonsInput}
             handleSizeButtonsInput={this.handleSizeButtonsInput}
             handleCategorySelectInput={this.handleCategorySelectInput}
           />
           <Clearfix></Clearfix>
           <ButtonsFiltered
+            // props
             products={this.props.products}
             categories={this.props.categories}
             collections={this.props.collections}
+            // prop handlers
+            getUpdatedCart={this.props.getUpdatedCart}
+            // state
             selectedCategory={this.state.selectedCategory}
             selectedCustomizable={this.state.selectedCustomizable}
             selectedSize={this.state.selectedSize}
-            handleUpdatedCartTrue={this.props.handleUpdatedCartTrue}
           />
         </Grid>
       </div>
