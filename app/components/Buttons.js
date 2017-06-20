@@ -57,6 +57,7 @@ export default class Buttons extends React.Component {
             selectedCategory={this.state.selectedCategory}
             selectedCustomizable={this.state.selectedCustomizable}
             selectedSize={this.state.selectedSize}
+            handleUpdatedCartTrue={this.props.handleUpdatedCartTrue}
           />
         </Grid>
       </div>

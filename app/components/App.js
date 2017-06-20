@@ -5,6 +5,7 @@ import Cart from './Cart';
 import FAQ from './FAQ';
 import Subscribe from './Subscribe';
 import Contact from './Contact';
+import BadgeCartTotal from './BadgeCartTotal.js'
 import {fetchProducts, fetchCart, fetchCollections, fetchCategories} from '../utils/api';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
@@ -17,8 +18,9 @@ export default class App extends React.Component {
       products: [],
       categories: [],
       collections: [],
-      cart: {}
+      cart: null,
     };
+    this.handleUpdatedCartTrue = this.handleUpdatedCartTrue.bind(this)
   }
 
   componentDidMount() {
@@ -35,7 +37,17 @@ export default class App extends React.Component {
 
     fetchCart().then((cart) => {
       this.setState(() => {
-        return {cart: cart.data}
+        return {cart: cart}
+      })
+    })
+  }
+
+  handleUpdatedCartTrue() {
+    fetchCart().then((cart) => {
+      this.setState(() => {
+        console.log("setstate")
+        console.log(cart);
+        return {cart: cart}
       })
     })
   }
@@ -54,7 +66,7 @@ export default class App extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <LinkContainer to="/">
+                <LinkContainer to="/buttons">
                   <NavItem eventKey={1}>Buttons</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/faq">
@@ -69,18 +81,19 @@ export default class App extends React.Component {
               </Nav>
               <Nav pullRight>
                 <LinkContainer to="/cart">
-                  <NavItem eventKey={5}>Cart</NavItem>
+                  <NavItem eventKey={5}>Cart{" "}<BadgeCartTotal cart={this.state.cart}/></NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
           <Switch>
-            <Route exact path="/" render={(props) =>
+            <Route exact path="/buttons" render={(props) =>
               <Buttons
                 products={this.state.products}
                 categories={this.state.categories}
                 collections={this.state.collections}
                 cart={this.state.cart}
+                handleUpdatedCartTrue={this.handleUpdatedCartTrue}
               />
             }/>
             <Route exact path="/cart" component={(props) =>
@@ -91,7 +104,7 @@ export default class App extends React.Component {
             <Route exact path="/faq" component={FAQ}/>
             <Route exact path="/subscribe" component={Subscribe}/>
             <Route exact path="/contact" component={Contact}/>
-            <Redirect from="/buttons" to="/"/>
+            <Redirect from="/" to="/buttons"/>
           </Switch>
         </div>
       </Router>

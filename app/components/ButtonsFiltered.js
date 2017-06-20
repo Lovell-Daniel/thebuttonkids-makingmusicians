@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Item from "./Item";
 import { Row } from "react-bootstrap"
 import {getRelationshipId, getRelationshipName, satisfiesSize, satisfiesCategory, satisfiesCustomizable} from "../utils/filter.js"
 
@@ -29,7 +29,7 @@ export default class ButtonsFiltered extends React.Component {
           })
           .map((product) => {
             return (
-              <Button key={product.id} product={product} />
+              <Item key={product.id} product={product} handleUpdatedCartTrue={this.props.handleUpdatedCartTrue} />
             )
           })
         }

@@ -32,3 +32,7 @@ export function fetchCategory(categoryId) {
 export function fetchCollection(collectionId) {
   return Moltin.Collections.Get(collectionId)
 }
+
+export function addToCart(productId, quantity) {
+  return Moltin.Cart.AddProduct(productId, quantity)
+}
