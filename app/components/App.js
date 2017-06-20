@@ -115,7 +115,12 @@ export default class App extends React.Component {
             <Route exact path="/subscribe" component={Subscribe}/>
             <Route exact path="/contact" component={Contact}/>
             <Route exact path="/cart" component={(props) =>
-              <Cart cart={this.state.cart}/>}
+              <Cart
+                // state
+                cart={this.state.cart}
+                // state handler
+                getUpdatedCart={this.getUpdatedCart}
+              />}
             />
             <Redirect from="/" to="/buttons"/>
           </Switch>
