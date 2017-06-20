@@ -1,6 +1,6 @@
 // dependencies
 import React from 'react'
-import {BrowserRouter as Router, NavLink, Route, Switch, Redirect} from 'react-router-dom'
+import {HashRouter as Router, NavLink, Route, Switch, Redirect} from 'react-router-dom'
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 // components
