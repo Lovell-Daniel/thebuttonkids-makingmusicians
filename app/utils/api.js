@@ -36,3 +36,7 @@ export function fetchCollection(collectionId) {
 export function addToCart(productId, quantity) {
   return Moltin.Cart.AddProduct(productId, quantity)
 }
+
+export function deleteCart() {
+  return Moltin.Cart.Delete()
+}
