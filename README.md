@@ -11,8 +11,4 @@ Made with
 - react-router v4
 - react-bootstrap
 - react-router-bootstrap
-- @moltin/sdk
-
-Moltin
-------
-API service for e-commerce
+- @moltin/sdk (Moltin is an API service for e-commerce)
