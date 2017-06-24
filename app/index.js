@@ -1,7 +1,11 @@
+// dependecies
 import React from 'react';
 import ReactDOM from 'react-dom';
-//require('./index.css');
+// components
 import App from './components/App.js';
+// css
+//require('./index.css');
+
 
 ReactDOM.render(
-  <App/>, document.getElementById('app'));
+  <App />, document.getElementById('app'));

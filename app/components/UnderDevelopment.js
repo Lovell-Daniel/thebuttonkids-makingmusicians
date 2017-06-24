@@ -13,8 +13,8 @@ export default class UnderDevelopment extends React.Component {
   }
 
   close() {
-    this.setState(() => {
-      return {showModal: false}
+    this.setState({
+      showModal: false
     })
   }
 

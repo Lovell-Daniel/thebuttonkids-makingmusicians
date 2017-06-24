@@ -12,46 +12,45 @@ import {
   satisfiesCustomizable
 } from "../utils/filter.js"
 
-export default class ButtonsFiltered extends React.Component {
+export default function ButtonsFiltered(props) {
 // filters and contains the products that need to be displayed
 // checks against the three filter options
-  render() {
-    return (
-      <Row>
-        {this.props.products
-          .filter((product) => {
-            return (
-              satisfiesCategory(
-                this.props.selectedCategory,
-                getRelationshipName(
-                  product.relationships.categories.data[0].id,
-                  this.props.categories
-                )
-              ) && satisfiesSize(
-                this.props.selectedSize,
-                getRelationshipId("Big Buttons", this.props.collections),
-                getRelationshipId("Small Buttons", this.props.collections),
-                product
-              ) && satisfiesCustomizable(
-                this.props.selectedCustomizable,
-                getRelationshipId("Customizable Buttons", this.props.collections),
-                product
+  return (
+    <Row>
+      {props.products
+        .filter((product) => {
+          return (
+            satisfiesCategory(
+              props.selectedCategory,
+              getRelationshipName(
+                product.relationships.categories.data[0].id,
+                props.categories
               )
+            ) && satisfiesSize(
+              props.selectedSize,
+              getRelationshipId("Big Buttons", props.collections),
+              getRelationshipId("Small Buttons", props.collections),
+              product
+            ) && satisfiesCustomizable(
+              props.selectedCustomizable,
+              getRelationshipId("Customizable Buttons", props.collections),
+              product
             )
-          })
-          .map((product) => {
-            return (
-              <Product
-                // attributes
-                key={product.id}
-                // props
-                product={product}
-                // props handlers
-                getUpdatedCart={this.props.getUpdatedCart}
-              />)
-          })
-        }
-      </Row>
-    )
-  }
+          )
+        })
+        .map((product) => {
+          return (
+            <Product
+              // attributes
+              key={product.id}
+              // props
+              product={product}
+              // props handlers
+              getUpdatedCart={props.getUpdatedCart}
+            />
+          )
+        })
+      }
+    </Row>
+  )
 }
