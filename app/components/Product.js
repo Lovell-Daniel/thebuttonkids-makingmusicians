@@ -28,15 +28,17 @@ export default class Item extends React.Component {
   componentDidMount() {
     // get the image for the product
     fetchFile(this.props.product.relationships.files.data[0].id).then((file) => {
-      this.setState(() => {
-        return {image: file.data.link.href}
+      this.setState({
+        image: file.data.link.href
       })
     })
   }
 
   // handles changes to quantity field
   handleQuantityChange(e) {
-    this.setState({quantity: e.target.value})
+    this.setState({
+      quantity: e.target.value
+    })
   }
 
   // handles clicks on "Add to Cart" button
@@ -46,7 +48,9 @@ export default class Item extends React.Component {
       // calls util that sends product and quantity to API
       addToCart(this.props.product.id, this.state.quantity).then((cart) => {
         // resets the form
-        this.setState({quantity: ''})
+        this.setState({
+          quantity: ''
+        })
         // sends request to parent component to update state with new cart
         this.props.getUpdatedCart()
       })

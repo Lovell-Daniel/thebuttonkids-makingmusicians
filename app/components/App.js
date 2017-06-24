@@ -35,8 +35,8 @@ export default class App extends React.Component {
   // called by componentDidMount() and after every change to cart
   getUpdatedCart() {
     fetchCart().then((cart) => {
-      this.setState(() => {
-        return {cart: cart}
+      this.setState({
+        cart: cart
       })
     })
   }
@@ -46,11 +46,10 @@ export default class App extends React.Component {
     // products sometimes needs categories and collections, so loaded together
     Promise.all([fetchProducts(), fetchCategories(), fetchCollections()])
     .then(results => {
-      this.setState(() => {
-        return {
+      this.setState({
           products: results[0].data,
           categories: results[1].data,
-          collections: results[2].data}
+          collections: results[2].data
       })
     })
 
