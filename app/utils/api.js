@@ -11,6 +11,10 @@ export function fetchCart() {
   return Moltin.Cart.Get()
 }
 
+export function fetchCartItems() {
+  return Moltin.Cart.Items()
+}
+
 export function fetchCategories() {
   return Moltin.Categories.All()
 }
