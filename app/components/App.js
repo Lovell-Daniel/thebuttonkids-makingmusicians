@@ -15,6 +15,7 @@ import UnderDevelopment from './UnderDevelopment.js'
 import {
   fetchProducts,
   fetchCart,
+  fetchCartItems,
   fetchCollections,
   fetchCategories
 } from '../utils/api'
@@ -26,7 +27,8 @@ export default class App extends React.Component {
       products: [],
       categories: [],
       collections: [],
-      cart: null
+      cart: null,
+      cartItems: null
     };
     this.getUpdatedCart = this.getUpdatedCart.bind(this)
   }
@@ -34,9 +36,11 @@ export default class App extends React.Component {
   // update state with current cart
   // called by componentDidMount() and after every change to cart
   getUpdatedCart() {
-    fetchCart().then((cart) => {
+    Promise.all([fetchCart(), fetchCartItems()])
+    .then(results => {
       this.setState({
-        cart: cart
+        cart: results[0],
+        cartItems: results[1]
       })
     })
   }
@@ -47,9 +51,9 @@ export default class App extends React.Component {
     Promise.all([fetchProducts(), fetchCategories(), fetchCollections()])
     .then(results => {
       this.setState({
-          products: results[0].data,
-          categories: results[1].data,
-          collections: results[2].data
+        products: results[0].data,
+        categories: results[1].data,
+        collections: results[2].data
       })
     })
 
@@ -117,6 +121,7 @@ export default class App extends React.Component {
               <Cart
                 // state
                 cart={this.state.cart}
+                cartItems={this.state.cartItems}
                 // state handler
                 getUpdatedCart={this.getUpdatedCart}
               />}
