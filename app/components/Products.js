@@ -2,12 +2,12 @@
 import React from "react";
 import {PageHeader, Grid, Clearfix} from "react-bootstrap";
 // components
-import ButtonsFilter from "./ButtonsFilter";
-import ButtonsFiltered from "./ButtonsFiltered";
+import ProductsFilter from "./ProductsFilter";
+import ProductsFiltered from "./ProductsFiltered";
 // utils
 import {fetchCategories} from '../utils/api';
 
-export default class Buttons extends React.Component {
+export default class Products extends React.Component {
 // container for the filtering section and the section for displaying products
 // the common parent that has the state for the filtering selections
   constructor(props) {
@@ -38,7 +38,7 @@ export default class Buttons extends React.Component {
     return (
       <div>
         <Grid>
-          <ButtonsFilter
+          <ProductsFilter
             // props
             categories={this.props.categories}
             // state
@@ -51,7 +51,7 @@ export default class Buttons extends React.Component {
             handleCategorySelectInput={this.handleCategorySelectInput}
           />
           <Clearfix></Clearfix>
-          <ButtonsFiltered
+          <ProductsFiltered
             // props
             products={this.props.products}
             categories={this.props.categories}

@@ -2,9 +2,9 @@
 import React from "react";
 import {PageHeader, Row, ButtonToolbar, Col, Panel} from 'react-bootstrap';
 // components
-import CategorySelect from "./CategorySelect";
-import CustomizableButtonGroup from "./CustomizableButtonGroup";
-import SizeButtonGroup from "./SizeButtonGroup";
+import SelectCategory from "./SelectCategory";
+import SelectCustomizable from "./SelectCustomizable";
+import SelectSize from "./SelectSize";
 
 export default function ButtonsFilter(props) {
 // container for the three inputs for filtering products
@@ -15,7 +15,7 @@ export default function ButtonsFilter(props) {
           What buttons are you looking for?
           <p></p>
           <ButtonToolbar>
-            <CategorySelect
+            <SelectCategory
               // props
               categories={props.categories}
               selectedCategory={props.selectedCategory}
@@ -23,14 +23,14 @@ export default function ButtonsFilter(props) {
               handleCategorySelectInput={props.handleCategorySelectInput}
             />
             {" "}
-            <CustomizableButtonGroup
+            <SelectCustomizable
               // props
               selectedCustomizable={props.selectedCustomizable}
               // props handler
               handleCustomizableButtonsInput={props.handleCustomizableButtonsInput}
             />
             {" "}
-            <SizeButtonGroup
+            <SelectSize
               // props
               selectedSize={props.selectedSize}
               // props handler

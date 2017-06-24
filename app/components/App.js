@@ -4,7 +4,7 @@ import {HashRouter as Router, NavLink, Route, Switch, Redirect} from 'react-rout
 import {Navbar, Nav, NavItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 // components
-import Buttons from './Buttons'
+import Products from './Products'
 import Cart from './Cart'
 import FAQ from './FAQ'
 import Subscribe from './Subscribe'
@@ -104,7 +104,7 @@ export default class App extends React.Component {
           {/* define routes and related components */}
           <Switch>
             <Route exact path="/buttons" render={(props) =>
-              <Buttons
+              <Products
                 // state
                 products={this.state.products}
                 categories={this.state.categories}
