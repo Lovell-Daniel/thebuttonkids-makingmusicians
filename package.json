@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
     "build": "webpack -p",
-    "deploy": "surge /Users/daniel/dev/thebuttonkids-makingmusicians/dist thebuttonkids.com"
+    "deploy": "surge ./dist makingmusicians.thebuttonkids.com"
   },
   "babel": {
     "presets": [
