@@ -8,6 +8,7 @@ import CartSummary from "./CartSummary.js"
 import {deleteCart} from "../utils/api.js"
 
 export default function Cart(props){
+
   function handleDeleteCartClick() {
     deleteCart().then(() => {
       props.getUpdatedCart()

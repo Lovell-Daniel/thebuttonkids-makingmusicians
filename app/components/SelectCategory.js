@@ -2,7 +2,7 @@
 import React from "react";
 import {DropdownButton, MenuItem} from 'react-bootstrap';
 
-export default function CategorySelect(props) {
+export default function SelectCategory(props) {
 // dropdown to select a category to filter by
   // handle the selection
   function handleCategorySelectInputChange(eventKey, event) {
