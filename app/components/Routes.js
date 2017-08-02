@@ -64,10 +64,10 @@ export default function Routes(props) {
               getUpdatedCart={props.getUpdatedCart}
             />
           )}/>
-          <Route exact path="/faq" component={FAQ}/>
-          <Route exact path="/subscribe" component={Subscribe}/>
-          <Route exact path="/contact" component={Contact}/>
-          <Route exact path="/cart" render={routeProps => (
+          <Route path="/faq" component={FAQ}/>
+          <Route path="/subscribe" component={Subscribe}/>
+          <Route path="/contact" component={Contact}/>
+          <Route path="/cart" render={routeProps => (
             <Cart
               // state
               cart={props.cart}
