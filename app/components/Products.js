@@ -1,6 +1,6 @@
 // dependencies
 import React from "react";
-import {PageHeader, Grid, Clearfix} from "react-bootstrap";
+import {Grid, Clearfix} from "react-bootstrap";
 // components
 import ProductsFilter from "./ProductsFilter";
 import ProductsFiltered from "./ProductsFiltered";

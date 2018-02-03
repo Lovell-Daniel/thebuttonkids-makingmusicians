@@ -53,7 +53,7 @@ export default function Routes(props) {
 
         {/* define routes and related components */}
         <Switch>
-          <Route exact path="/buttons" render={routeProps => (
+          <Route path="/buttons" render={() => (
             <ProductsContainer
               // state
               products={props.products}
@@ -67,7 +67,7 @@ export default function Routes(props) {
           <Route path="/faq" component={FAQ}/>
           <Route path="/subscribe" component={Subscribe}/>
           <Route path="/contact" component={Contact}/>
-          <Route path="/cart" render={routeProps => (
+          <Route path="/cart" render={() => (
             <Cart
               // state
               cart={props.cart}
